@@ -1,0 +1,134 @@
+{
+  "name": "eta_plugins",
+  "version": "0.0.0",
+  "description": "Simple plugins for the Eta template engine",
+  "keywords": [
+    "eta",
+    "eta layouts",
+    "eta plugins",
+    "eta macros",
+    "eta simple include"
+  ],
+  "homepage": "https://eta.js.org",
+  "main": "dist/plugins.cjs.js",
+  "browser": "dist/browser/plugins.min.js",
+  "module": "dist/plugins.es.js",
+  "exports": {
+    "import": "./dist/plugins.es.js",
+    "require": "./dist/plugins.cjs.js",
+    "browser": "./dist/browser/plugins.min.js"
+  },
+  "typings": "dist/types/index.d.ts",
+  "jsdelivr": "dist/browser/plugins.min.js",
+  "unpkg": "dist/browser/plugins.min.js",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "author": "Ben Gubler <nebrelbug@gmail.com>",
+  "funding": "https://github.com/eta-dev/eta_plugins?sponsor=1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eta-dev/eta_plugins.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eta-dev/eta_plugins/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "build": "denoify && rollup -c rollup.config.ts && deno fmt deno_dist/*.ts",
+    "commit": "git-cz",
+    "format": "prettier --write '{src,test}/**/!(*.deno).ts' && deno fmt deno_dist/*.ts",
+    "lint": "eslint src/*.ts test/*.spec.ts examples/* --ext .js,.ts",
+    "prebuild": "rimraf dist && rimraf deno_dist",
+    "release": "npm run build && np",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "size": "size-limit",
+    "start": "rollup -c rollup.config.ts -w",
+    "test": "jest --coverage && npm run test:deno && npm run size",
+    "test:deno": "deno test test/deno/*.spec.ts --unstable --allow-read",
+    "test:prod": "npm run lint && npm run test -- --no-cache"
+  },
+  "lint-staged": {
+    "{src,test}/**/!(*.deno).ts": [
+      "eslint"
+    ]
+  },
+  "jest": {
+    "transform": {
+      ".(ts)": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "testRegex": "\\/test\\/(?!deno\\/).*(\\.spec\\.ts)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/",
+      "/test/deno/",
+      "/src/*.deno.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "/src/*.deno.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 85,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    },
+    "collectCoverageFrom": [
+      "src/!(*.deno|browser).ts"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.6.0",
+    "@types/jest": "^26.0.13",
+    "@types/node": "^14.10.1",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "coveralls": "^3.1.0",
+    "cross-env": "^7.0.2",
+    "denoify": "^0.5.4",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "2",
+    "eslint-plugin-node": "11",
+    "eslint-plugin-promise": "4",
+    "eslint-plugin-standard": "4",
+    "eta": "^1.8.0",
+    "husky": "^4.3.0",
+    "jest": "^26.4.2",
+    "lint-staged": "^10.3.0",
+    "np": "^6.5.0",
+    "prettier": "2.1.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.26.11",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-prettier": "^2.1.0",
+    "rollup-plugin-typescript2": "^0.27.2",
+    "shelljs": "^0.8.4",
+    "size-limit": "^4.6.0",
+    "ts-jest": "^26.3.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
