@@ -72,7 +72,7 @@ Made with ❤ by [@nebrelbug](https://github.com/nebrelbug) and all these wonder
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://www.bengubler.com"><img src="https://avatars3.githubusercontent.com/u/25597854?v=4" width="100px;" alt=""/><br /><sub><b>Ben Gubler</b></sub></a><br /><a href="https://github.com/nebrelbug/eta/commits?author=nebrelbug" title="Code">💻</a> <a href="#question-nebrelbug" title="Answering Questions">💬</a> <a href="https://github.com/nebrelbug/eta/commits?author=nebrelbug" title="Documentation">📖</a> <a href="https://github.com/nebrelbug/eta/commits?author=nebrelbug" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://www.bengubler.com"><img src="https://avatars3.githubusercontent.com/u/25597854?v=4" width="100px;" alt=""/><br /><sub><b>Ben Gubler</b></sub></a><br /><a href="https://github.com/nebrelbug/eta_plugin_mixins/commits?author=nebrelbug" title="Code">💻</a> <a href="#question-nebrelbug" title="Answering Questions">💬</a> <a href="https://github.com/nebrelbug/eta_plugin_mixins/commits?author=nebrelbug" title="Documentation">📖</a> <a href="https://github.com/nebrelbug/eta_plugin_mixins/commits?author=nebrelbug" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
