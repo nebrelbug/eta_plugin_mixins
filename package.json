@@ -1,38 +1,32 @@
 {
-  "name": "eta_plugins",
+  "name": "eta_plugin_mixins",
   "version": "0.0.0",
-  "description": "Simple plugins for the Eta template engine",
+  "description": "Add mixins support to the Eta template engine",
   "keywords": [
     "eta",
-    "eta layouts",
-    "eta plugins",
-    "eta macros",
-    "eta simple include"
+    "eta plugin",
+    "eta macros"
   ],
   "homepage": "https://eta.js.org",
-  "main": "dist/plugins.cjs.js",
-  "browser": "dist/browser/plugins.min.js",
-  "module": "dist/plugins.es.js",
+  "main": "dist/plugin.cjs.js",
+  "module": "dist/plugin.es.js",
   "exports": {
-    "import": "./dist/plugins.es.js",
-    "require": "./dist/plugins.cjs.js",
-    "browser": "./dist/browser/plugins.min.js"
+    "import": "./dist/plugin.es.js",
+    "require": "./dist/plugin.cjs.js"
   },
   "typings": "dist/types/index.d.ts",
-  "jsdelivr": "dist/browser/plugins.min.js",
-  "unpkg": "dist/browser/plugins.min.js",
   "sideEffects": false,
   "files": [
     "dist"
   ],
   "author": "Ben Gubler <nebrelbug@gmail.com>",
-  "funding": "https://github.com/eta-dev/eta_plugins?sponsor=1",
+  "funding": "https://github.com/nebrelbug/eta_plugin_mixins?sponsor=1",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eta-dev/eta_plugins.git"
+    "url": "git+https://github.com/nebrelbug/eta_plugin_mixins.git"
   },
   "bugs": {
-    "url": "https://github.com/eta-dev/eta_plugins/issues"
+    "url": "https://github.com/nebrelbug/eta_plugin_mixins/issues"
   },
   "license": "MIT",
   "engines": {

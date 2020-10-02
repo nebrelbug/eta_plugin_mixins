@@ -1,3 +1,3 @@
-// @denoify-ignore
+import macros from './macros'
 
-export { macros } from './macros'
+export default macros

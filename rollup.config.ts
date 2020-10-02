@@ -6,23 +6,6 @@ const pkg = require('./package.json')
 
 export default [
   {
-    input: 'src/browser.ts', // todo: use rollup-plugin-replace
-    output: [
-      {
-        file: 'dist/browser/eta.dev.js',
-        format: 'umd',
-        name: 'Eta',
-        sourcemap: true
-      }
-    ],
-    plugins: [typescript({ useTsconfigDeclarationDir: true }), commonjs(), resolve()],
-    // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-    external: [],
-    watch: {
-      include: 'src/**'
-    }
-  },
-  {
     input: 'src/index.ts',
     output: [
       {

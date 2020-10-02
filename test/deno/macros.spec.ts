@@ -1,6 +1,6 @@
 import { assertEquals } from 'https://deno.land/std@0.67.0/testing/asserts.ts'
 
-import { macros } from '../../deno_dist/mod.ts'
+import plugin_mixins from '../../deno_dist/mod.ts'
 import * as eta from 'https://deno.land/x/eta@v1.11.0/mod.ts'
 
 let template = `
@@ -10,7 +10,7 @@ This is the template body
 <%~ body() %>`
 
 eta.configure({
-  plugins: [macros()]
+  plugins: [plugin_mixins()]
 })
 
 Deno.test('Compiling to string works as expected', () => {

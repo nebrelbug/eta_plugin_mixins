@@ -1,1 +1,3 @@
-export { macros } from "./macros.ts";
+import macros from "./index.ts";
+
+export default macros;

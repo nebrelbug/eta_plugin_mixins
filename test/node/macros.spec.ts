@@ -1,6 +1,6 @@
 /* global it, expect, describe */
 import * as eta from 'eta'
-import { macros } from '../../src/index'
+import plugin_mixins from '../../src/index'
 
 let template = `
 <% let body = {@ %>
@@ -9,7 +9,7 @@ This is the template body
 <%~ body() %>`
 
 eta.configure({
-  plugins: [macros()]
+  plugins: [plugin_mixins()]
 })
 
 describe('Simple macros work', () => {

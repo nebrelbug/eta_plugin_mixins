@@ -1,6 +1,6 @@
 var captureRegEx = /{@|@}/g;
 
-export function macros() {
+export default function macros() {
   return {
     processAST: function (
       buff: Array<any>,
