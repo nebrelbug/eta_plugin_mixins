@@ -1,1 +1,1 @@
-export { macros } from "./macros";
+export { macros } from "./macros.ts";

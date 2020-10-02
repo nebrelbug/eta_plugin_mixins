@@ -16,14 +16,15 @@ describe('Simple macros work', () => {
   it('Compiling to string works as expected', () => {
     var fnStr = eta.compileToString(template, eta.config)
 
-    expect(fnStr).toEqual(`var tR='',include=E.include.bind(E),includeFile=E.includeFile.bind(E)
-function block(t,n){var i=it[t];return i?"function"==typeof i?i(it):i:"function"==typeof n?n(it):n}function layout(t,n){if(n)return E.includeFile(t,n);tR.l=t}
+    expect(fnStr)
+      .toEqual(`var tR='',__l,__lP,include=E.include.bind(E),includeFile=E.includeFile.bind(E)
+function layout(p,d){__l=p;__lP=d}
 tR+='\\n'
 let body = function(it){var tR="";
 tR+='This is the template body\\n'
 return tR}
 tR+=body()
-if(tR.l)tR=E.includeFile(tR.l,tR)
+if(__l)tR=includeFile(__l,Object.assign(it,{body:tR},__lP))
 if(cb){cb(null,tR)} return tR`)
   })
 

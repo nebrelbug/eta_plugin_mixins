@@ -1,70 +1,41 @@
-import { assertEquals, assertThrows } from 'https://deno.land/std@0.67.0/testing/asserts.ts'
-import * as path from 'https://deno.land/std@0.66.0/path/mod.ts'
-const __dirname = new URL('.', import.meta.url).pathname
+import { assertEquals } from 'https://deno.land/std@0.67.0/testing/asserts.ts'
 
-import { render, templates, compile } from '../../deno_dist/mod.ts'
+import { macros } from '../../deno_dist/mod.ts'
+import * as eta from 'https://deno.land/x/eta@v1.11.0/mod.ts'
 
-templates.define('test-template', compile('Saluton <%=it.name%>'))
+let template = `
+<% let body = {@ %>
+This is the template body
+<% @} %>
+<%~ body() %>`
 
-Deno.test('include works', async () => {
-  var renderedTemplate = render('<%~ include("test-template", it) %>', { name: 'Ada' })
-
-  assertEquals(renderedTemplate, 'Saluton Ada')
+eta.configure({
+  plugins: [macros()]
 })
 
-Deno.test('includeFile works w/ filename prop', async () => {
-  var renderedTemplate = render(
-    '<%~ includeFile("simple", it) %>',
-    { name: 'Ada' },
-    { filename: path.join(__dirname, '../templates/placeholder.eta') }
+Deno.test('Compiling to string works as expected', () => {
+  var fnStr = eta.compileToString(template, eta.config)
+
+  assertEquals(
+    fnStr,
+    `var tR='',__l,__lP,include=E.include.bind(E),includeFile=E.includeFile.bind(E)
+function layout(p,d){__l=p;__lP=d}
+tR+='\\n'
+let body = function(it){var tR="";
+tR+='This is the template body\\n'
+return tR}
+tR+=body()
+if(__l)tR=includeFile(__l,Object.assign(it,{body:tR},__lP))
+if(cb){cb(null,tR)} return tR`
   )
-
-  assertEquals(renderedTemplate, 'Hi Ada')
 })
 
-Deno.test('"E.includeFile" works with "views" array', async () => {
-  var renderedTemplate = render(
-    '<%~ E.includeFile("randomtemplate", it) %>',
-    { user: 'Ben' },
-    { views: [path.join(__dirname, '../templates'), path.join(__dirname, '../othertemplates')] }
-  )
-
-  assertEquals(renderedTemplate, 'This is a random template. Hey Ben')
-})
-
-Deno.test('"includeFile" works with "views" array', async () => {
-  var renderedTemplate = render(
-    '<%~ includeFile("randomtemplate", it) %>',
-    { user: 'Ben' },
-    { views: [path.join(__dirname, '../templates'), path.join(__dirname, '../othertemplates')] }
-  )
-
-  assertEquals(renderedTemplate, 'This is a random template. Hey Ben')
-})
-
-Deno.test('"includeFile" works with "views" string', async () => {
-  var renderedTemplate = render(
-    '<%~ includeFile("randomtemplate", it) %>',
-    { user: 'Ben' },
-    { views: path.join(__dirname, '../othertemplates') }
-  )
-
-  assertEquals(renderedTemplate, 'This is a random template. Hey Ben')
-})
-
-Deno.test('throws if helper "includeFile" cannot find template', () => {
-  assertThrows(
-    () => {
-      render(
-        '<%~ includeFile("imaginary-template", it) %>',
-        { user: 'Ben' },
-        { views: [path.join(__dirname, '../templates'), path.join(__dirname, '../othertemplates')] }
-      )
-    },
-    Error,
-    `Could not find the template "imaginary-template". Paths tried: ${path.join(
-      __dirname,
-      '../templates'
-    )}/imaginary-template.eta,${path.join(__dirname, '../othertemplates')}/imaginary-template.eta`
+Deno.test('Rendering works as expected', () => {
+  var res = eta.render(template, {})
+  assertEquals(
+    res,
+    `
+This is the template body
+`
   )
 })
