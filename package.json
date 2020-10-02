@@ -5,9 +5,10 @@
   "keywords": [
     "eta",
     "eta plugin",
-    "eta macros"
+    "eta macros",
+    "eta blocks"
   ],
-  "homepage": "https://eta.js.org",
+  "homepage": "https://github.com/nebrelbug/eta_plugin_mixins",
   "main": "dist/plugin.cjs.js",
   "module": "dist/plugin.es.js",
   "exports": {
